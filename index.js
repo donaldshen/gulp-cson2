@@ -1,6 +1,6 @@
 const through = require('through2')
 const PluginError = require('plugin-error')
-const cson = require('cson')
+const cson = require('cson-parser')
 
 const PLUGIN_NAME = 'gulp-cson2'
 
