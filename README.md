@@ -1,15 +1,19 @@
 # gulp-cson2
 
-> Inspired by [gulp-cson](https://github.com/stevelacy/gulp-cson), but written in js and works properly with gulp-watch & gulp-plumber
+> Inspired by [gulp-cson](https://github.com/stevelacy/gulp-cson), but written in js.
 
-# Usage
+- It delays the extname modification to the next event loop so gulp-watch's callback could print files with their origin 'json' extname.
+- It has a standard error handling, so it works great with gulp-plumber.
+- It uses cson-parser directly instead of using cson package, so it is smaller than `gulp-cson`
 
-## Install
+## Usage
+
+### Install
 
 ```
 npm i -D gulp-cson2
 ```
-## Example
+### Example
 ```javascript
 // you can use it without watch & plumber for sure
 const gulp = require('gulp')
