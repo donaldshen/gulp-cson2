@@ -1,6 +1,6 @@
 {
   "name": "gulp-cson2",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Parse cson with gulp more properly",
   "main": "index.js",
   "scripts": {
