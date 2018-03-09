@@ -9,12 +9,20 @@ module.exports = ({ indent = 2 } = {}) => {
     if (file.isStream()) {
       cb(new PluginError(PLUGIN_NAME, 'Stream mode not supported!'))
     } else {
-      const json = cson.parse(file.contents.toString())
-      if (json instanceof Error) {
-        cb(new PluginError(PLUGIN_NAME, json))
+      if (file.contents) {
+        const json = cson.parse(file.contents.toString())
+        if (json instanceof Error) {
+          cb(new PluginError(PLUGIN_NAME, json))
+        } else {
+          file.contents = Buffer.from(JSON.stringify(json, null, indent))
+          // HACK: async operation lets gulp-watch's cb print file's path with '.cson' as extname
+          setImmediate(() => {
+            file.extname = '.json'
+            cb(null, file)
+          })
+        }
       } else {
-        file.contents = Buffer.from(JSON.stringify(json, null, indent))
-        // NOTE: async operation lets gulp-watch's cb print file's path with '.cson' as extname
+        // NOTE: when del a file, file.contents is null
         setImmediate(() => {
           file.extname = '.json'
           cb(null, file)
