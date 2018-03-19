@@ -10,7 +10,9 @@ module.exports = ({ indent = 2 } = {}) => {
       cb(new PluginError(PLUGIN_NAME, 'Stream mode not supported!'))
     } else {
       if (file.contents) {
-        const json = cson.parse(file.contents.toString())
+        const content = file.contents.toString()
+        // NOTE: cson.parse('') throws error instead of return it!
+        const json = content ? cson.parse(content) : {}
         if (json instanceof Error) {
           cb(new PluginError(PLUGIN_NAME, json))
         } else {

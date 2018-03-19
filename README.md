@@ -2,7 +2,7 @@
 
 > Inspired by [gulp-cson](https://github.com/stevelacy/gulp-cson), but written in js.
 
-- It delays the extname modification to the next event loop so `gulp-watch`'s callback could print files with their original 'json' extname.
+- It delays the extname modification to the next event loop so `gulp-watch`'s callback could print files with their original 'cson' extname.
 - It has a standard error handling, so it works great with `gulp-plumber`.
 - It uses cson-parser directly instead of using cson package, so it is smaller than `gulp-cson`
 
